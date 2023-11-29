@@ -43,7 +43,7 @@
 
 # What is your status page called?
 # Shows up in the browser bar and meta tags
-title: Eggsample Status
+title: Bioconductor Status
 
 # Should posts, which have a publish date
 # from the future, be built? Useful for
@@ -97,7 +97,7 @@ defaultContentLanguage: en
 #
 # Broken example:
 # baseUrl: /
-baseURL: https://example.com
+baseURL: https://dev.status.bioconductor.org/
 
 # For features like Last modified, you
 # need to use a Git repository. If you
@@ -143,10 +143,12 @@ params:
   # For help, see the wiki:
   # https://github.com/cstate/cstate/wiki/Customization
   categories:
-    - name: North Coast
-      description: The main servers are located here.
-      closed: true
-    - name: Empty Category
+    - name: Websites
+      description: The main Bioconductor web pages
+      closed: false
+    - name: BiocManager
+      description: The main Bioconductor repositories
+      closed: false
     - name: Uncategorized
       untitled: true
 
@@ -158,20 +160,18 @@ params:
   # For help, see the wiki:
   # https://github.com/cstate/cstate/wiki/Customization
   systems:
-    - name: Gateway
-      category: North Coast
-    - name: Backup Gateway
-      category: North Coast
-    - name: Website
-      description: The web frontend for the application.
-      category: Uncategorized
-      link: https://example.com/
-    - name: API
-      description: The guts of the application.
-      category: Uncategorized
-    - name: Media Proxy
-      description: This is the service responsible for serving images, audio, and video. It is reliant on our CDN.
-      category: Uncategorized
+    - name: Main site
+      description: https://bioconductor.org
+      category: Websites
+      link: https://bioconductor.org
+    - name: Workshop Service
+      description: https://workshop.bioconductor.org
+      category: Websites
+      link: https://workshop.bioconductor.org
+    - name: Archive
+      description: Access to older releases
+      category: Websites
+      link: https://mghp.osn.xsede.org/bir190004-bucket01/index.html#archive.bioconductor.org/packages/
 
   # What date format to use?
   #
@@ -269,7 +269,7 @@ params:
   #
   # Default: `false`
   # BOOLEAN; `true`, `false`
-  disableDarkMode: false
+  disableDarkMode: true
 
   # Should we show the logo or the title
   # of the status page?
@@ -286,7 +286,7 @@ params:
   #
   # Recommended: png, bmp, jpg, or gif
   # for best browser support!
-  logo: logo.png
+  logo: bioconductor_logo_rgb.png
 
   # This is the description that is shown
   # on the footer and meta tags.
@@ -333,7 +333,7 @@ params:
   # disrupted: "#cc4400"
   # down: "#e60000"
   # notice: "#24478f"
-  brand: "#0a0c0f"
+  brand: "#1a81c2"
   ok: "#008000"
   disrupted: "#cc4400"
   down: "#e60000"

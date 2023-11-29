@@ -1,0 +1,53 @@
+DATE,SERVICE,NOTES,STATUS
+2023-11-30-17-03-07,Main site,http://bioconductor.org HTTP/1.1 200,ok
+2023-11-30-17-03-45,Main site,http://bioconductor.org HTTP/1.1 200,ok
+2023-11-30-17-03-46,Workshop Service,http://workshop.bioconductor.org HTTP/2 200,ok
+2023-11-30-17-03-46,Archive,https://mghp.osn.xsede.org/bir190004-bucket01/archive.bioconductor.org/packages/3.17/index.html HTTP/1.1 200,ok
+2023-11-30-17-04-11,Main site,http://bioconductor.org HTTP/1.1 200,ok
+2023-11-30-17-04-11,Workshop Service,http://workshop.bioconductor.org HTTP/2 200,ok
+2023-11-30-17-04-11,Archive,https://mghp.osn.xsede.org/bir190004-bucket01/archive.bioconductor.org/packages/3.17/index.html HTTP/1.1 200,ok
+2023-11-30-17-05-20,Main site,http://bioconductor.org HTTP/1.1 200,ok
+2023-11-30-17-05-20,Workshop Service,http://workshop.bioconductor.org HTTP/2 200,ok
+2023-11-30-17-05-20,Archive,https://mghp.osn.xsede.org/bir190004-bucket01/archive.bioconductor.org/packages/3.17/index.html HTTP/1.1 200,ok
+2023-11-30-17-15-58,Main site,http://bioconductor.org HTTP/1.1 200,ok
+2023-11-30-17-15-59,Workshop Service,http://workshop.bioconductor.org HTTP/2 200,ok
+2023-11-30-17-15-59,Archive,https://mghp.osn.xsede.org/bir190004-bucket01/archive.bioconductor.org/packages/3.17/index.html HTTP/1.1 200,ok
+2023-11-30-17-26-34,Main site,http://bioconductor.org HTTP/1.1 200,ok
+2023-11-30-17-26-35,Workshop Service,http://workshop.bioconductor.org HTTP/2 200,ok
+2023-11-30-17-26-35,Archive,https://mghp.osn.xsede.org/bir190004-bucket01/archive.bioconductor.org/packages/3.17/index.html HTTP/1.1 200,ok
+2023-11-30-17-34-30,Main site,http://bioconductor.org HTTP/1.1 200,ok
+2023-11-30-17-34-30,Workshop Service,http://workshop.bioconductor.org HTTP/2 200,ok
+2023-11-30-17-34-30,Archive,https://mghp.osn.xsede.org/bir190004-bucket01/archive.bioconductor.org/packages/3.17/index.html HTTP/1.1 200,ok
+2023-11-30-17-42-20,Main site,http://bioconductor.org HTTP/1.1 200,ok
+2023-11-30-17-42-20,Workshop Service,http://workshop.bioconductor.org HTTP/2 200,ok
+2023-11-30-17-42-21,Archive,https://mghp.osn.xsede.org/bir190004-bucket01/archive.bioconductor.org/packages/3.17/index.html HTTP/1.1 200,ok
+2023-11-30-18-16-51,Main_site,http://bioconductor.org HTTP/1.1 200,ok
+2023-11-30-18-16-51,Workshop_Service,http://workshop.bioconductor.org HTTP/2 502,down
+2023-11-30-18-16-51,Archive,https://mghp.osn.xsede.org/bir190004-bucket01/archive.bioconductor.org/packages/3.17/index.html HTTP/1.1 200,ok
+2023-11-30-18-18-03,Main_site,http://bioconductor.org HTTP/1.1 200,ok
+2023-11-30-18-18-03,Workshop_Service,http://workshop.bioconductor.org HTTP/2 502,down
+2023-11-30-18-18-03,Archive,https://mghp.osn.xsede.org/bir190004-bucket01/archive.bioconductor.org/packages/3.17/index.html HTTP/1.1 200,ok
+2023-11-30-18-18-54,Main_site,http://bioconductor.org HTTP/1.1 200,ok
+2023-11-30-18-18-55,Workshop_Service,http://workshop.bioconductor.org HTTP/2 502,down
+2023-11-30-18-18-55,Archive,https://mghp.osn.xsede.org/bir190004-bucket01/archive.bioconductor.org/packages/3.17/index.html HTTP/1.1 200,ok
+2023-11-30-18-22-38,Main_site,http://bioconductor.org HTTP/1.1 200,ok
+2023-11-30-18-22-38,Workshop_Service,http://workshop.bioconductor.org HTTP/2 502,down
+2023-11-30-18-22-39,Archive,https://mghp.osn.xsede.org/bir190004-bucket01/archive.bioconductor.org/packages/3.17/index.html HTTP/1.1 200,ok
+2023-11-30-18-23-04,Main_site,http://bioconductor.org HTTP/1.1 200,ok
+2023-11-30-18-23-04,Workshop_Service,http://workshop.bioconductor.org HTTP/2 200,ok
+2023-11-30-18-23-05,Archive,https://mghp.osn.xsede.org/bir190004-bucket01/archive.bioconductor.org/packages/3.17/index.html HTTP/1.1 200,ok
+2023-11-30-18-24-38,Main_site,http://bioconductor.org HTTP/1.1 200,ok
+2023-11-30-18-24-38,Workshop_Service,http://workshop.bioconductor.org HTTP/2 200,ok
+2023-11-30-18-24-39,Archive,https://mghp.osn.xsede.org/bir190004-bucket01/archive.bioconductor.org/packages/3.17/index.html HTTP/1.1 200,ok
+2023-11-30-18-25-11,Main_site,http://bioconductor.org HTTP/1.1 200,ok
+2023-11-30-18-25-11,Workshop_Service,http://workshop.bioconductor.org HTTP/2 200,ok
+2023-11-30-18-25-12,Archive,https://mghp.osn.xsede.org/bir190004-bucket01/archive.bioconductor.org/packages/3.17/index.html HTTP/1.1 200,ok
+2023-11-30-18-26-45,Main_site,http://bioconductor.org HTTP/1.1 200,ok
+2023-11-30-18-26-46,Workshop_Service,http://workshop.bioconductor.org HTTP/2 200,ok
+2023-11-30-18-26-46,Archive,https://mghp.osn.xsede.org/bir190004-bucket01/archive.bioconductor.org/packages/3.17/index.html HTTP/1.1 200,ok
+2023-11-30-18-29-49,Main_site,http://bioconductor.org HTTP/1.1 200,ok
+2023-11-30-18-29-49,Workshop_Service,http://workshop.bioconductor.org HTTP/2 200,ok
+2023-11-30-18-29-49,Archive,https://mghp.osn.xsede.org/bir190004-bucket01/archive.bioconductor.org/packages/3.17/index.html HTTP/1.1 200,ok
+2023-11-30-18-34-50,Main_site,http://bioconductor.org HTTP/1.1 200,ok
+2023-11-30-18-34-50,Workshop_Service,http://workshop.bioconductor.org HTTP/2 200,ok
+2023-11-30-18-34-51,Archive,https://mghp.osn.xsede.org/bir190004-bucket01/archive.bioconductor.org/packages/3.17/index.html HTTP/1.1 200,ok

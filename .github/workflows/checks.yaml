@@ -1,0 +1,68 @@
+name: Scheduled checks
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+defaults:
+  run:
+    shell: bash
+concurrency:
+  group: "webchecks"
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: js2
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.PAT }}
+          persist-credentials: true
+
+      - name: Check site accessibility and push results
+        id: check
+        uses: nick-fields/retry@v2
+        with:
+          timeout_minutes: 10
+          max_attempts: 20
+          shell: bash
+          command: |
+            set -x
+            git config --global --add safe.directory "$GITHUB_WORKSPACE"
+            git config user.name github-actions
+            git config user.email github-actions@github.com
+            git pull origin main || git reset --hard origin/main
+            bash .github/scripts/web_check_and_report.sh 'http://bioconductor.org' '(Auto-detected) Bioconductor Main Site Down' 'disrupted' 'Main site'
+            bash .github/scripts/web_check_and_report.sh 'http://workshop.bioconductor.org' '(Auto-detected) Bioconductor Workshop Service Down' 'disrupted' 'Workshop Service'
+            bash .github/scripts/web_check_and_report.sh 'https://mghp.osn.xsede.org/bir190004-bucket01/archive.bioconductor.org/packages/3.17/index.html' '(Auto-detected) Bioconductor Archive Down' 'disrupted' 'Archive'
+            git commit -m "Update website checks $(date '+%Y-%m-%d-%H-%M-%S')"
+            git push
+            if grep 'yes' /tmp/webchecknotify > /dev/null; then
+              echo notify='yes' >> $GITHUB_OUTPUT
+              rm /tmp/webchecknotify
+            fi
+
+      - name: Set msg value
+        if: steps.check.outputs.notify=='yes'
+        id: msg
+        run: |
+          {
+            echo 'NOTIFYMSG<<EOF'
+            cat /tmp/webchecknotify-msg
+            echo EOF
+          } >> "$GITHUB_ENV"
+          rm /tmp/webchecknotify-msg
+
+      - name: Notify slack channel
+        uses: slackapi/slack-github-action@v1.24.0
+        with:
+          channel-id: '${{secrets.SLACK_CHANNEL_ID}}'
+          slack-message: |
+            At least one webcheck has failed.
+            ${{env.NOTIFYMSG}}
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+          SLACK_CHANNEL_ID: ${{ secrets.SLACK_CHANNEL_ID }}
+          NOTIFYMSG: ${{env.NOTIFYMSG}}
+        if: env.SLACK_BOT_TOKEN != null && env.SLACK_CHANNEL_ID != null && steps.check.outputs.notify=='yes'
+        continue-on-error: true
