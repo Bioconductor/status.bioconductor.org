@@ -12210,3 +12210,6 @@ DATE,SERVICE,NOTES,STATUS
 2023-12-27-03-40-47,Main_site,http://bioconductor.org HTTP/1.1 200,ok
 2023-12-27-03-40-48,Workshop_Service,http://workshop.bioconductor.org HTTP/2 200,ok
 2023-12-27-03-40-48,Archive,https://mghp.osn.xsede.org/bir190004-bucket01/archive.bioconductor.org/packages/3.17/index.html HTTP/1.1 200,ok
+2023-12-27-03-48-36,Main_site,http://bioconductor.org HTTP/1.1 200,ok
+2023-12-27-03-48-36,Workshop_Service,http://workshop.bioconductor.org HTTP/2 200,ok
+2023-12-27-03-48-37,Archive,https://mghp.osn.xsede.org/bir190004-bucket01/archive.bioconductor.org/packages/3.17/index.html HTTP/1.1 200,ok
