@@ -149,6 +149,9 @@ params:
     - name: BiocManager
       description: The main Bioconductor repositories
       closed: false
+    - name: External
+      description: Statuses of some relevant external resources
+      closed: false
     - name: Uncategorized
       untitled: true
 
@@ -172,6 +175,10 @@ params:
       description: Access to older releases
       category: Websites
       link: https://mghp.osn.xsede.org/bir190004-bucket01/index.html#archive.bioconductor.org/packages/
+    - name: GitHub
+      description: Status of GitHub services
+      category: External
+      link: https://www.githubstatus.com/
 
   # What date format to use?
   #
