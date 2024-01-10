@@ -16128,3 +16128,6 @@ DATE,SERVICE,NOTES,STATUS
 2024-01-10-01-19-51,Main_site,http://bioconductor.org HTTP/1.1 200,ok
 2024-01-10-01-19-51,Workshop_Service,http://workshop.bioconductor.org HTTP/2 200,ok
 2024-01-10-01-19-52,Archive,https://mghp.osn.xsede.org/bir190004-bucket01/archive.bioconductor.org/packages/3.17/index.html HTTP/1.1 200,ok
+2024-01-10-01-30-17,Main_site,http://bioconductor.org HTTP/1.1 200,ok
+2024-01-10-01-30-18,Workshop_Service,http://workshop.bioconductor.org HTTP/2 200,ok
+2024-01-10-01-30-19,Archive,https://mghp.osn.xsede.org/bir190004-bucket01/archive.bioconductor.org/packages/3.17/index.html HTTP/1.1 200,ok
