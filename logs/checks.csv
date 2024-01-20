@@ -20583,3 +20583,6 @@ DATE,SERVICE,NOTES,STATUS
 2024-01-19-20-09-48,Main_site,http://bioconductor.org HTTP/1.1 200,ok
 2024-01-19-20-09-49,Workshop_Service,http://workshop.bioconductor.org HTTP/2 200,ok
 2024-01-19-20-09-50,Archive,https://mghp.osn.xsede.org/bir190004-bucket01/archive.bioconductor.org/packages/3.17/index.html HTTP/1.1 200,ok
+2024-01-19-20-37-55,Main_site,http://bioconductor.org HTTP/1.1 200,ok
+2024-01-19-20-37-56,Workshop_Service,http://workshop.bioconductor.org HTTP/2 200,ok
+2024-01-19-20-37-56,Archive,https://mghp.osn.xsede.org/bir190004-bucket01/archive.bioconductor.org/packages/3.17/index.html HTTP/1.1 200,ok
