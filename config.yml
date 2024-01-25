@@ -171,6 +171,10 @@ params:
       description: https://workshop.bioconductor.org
       category: Websites
       link: https://workshop.bioconductor.org
+    - name: Slack invite app
+      description: https://slack.bioconductor.org
+      category: Websites
+      link: https://slack.bioconductor.org
     - name: Archive
       description: Access to older releases
       category: Websites
