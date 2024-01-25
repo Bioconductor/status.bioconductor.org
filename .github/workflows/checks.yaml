@@ -34,6 +34,7 @@ jobs:
             git pull origin main || git reset --hard origin/main
             bash .github/scripts/web_check_and_report.sh 'http://bioconductor.org' '(Auto-detected) Bioconductor Main Site Down' 'disrupted' 'Main site'
             bash .github/scripts/web_check_and_report.sh 'http://workshop.bioconductor.org' '(Auto-detected) Bioconductor Workshop Service Down' 'disrupted' 'Workshop Service'
+            bash .github/scripts/web_check_and_report.sh 'http://slack.bioconductor.org' '(Auto-detected) Slack Invite App Down' 'disrupted' 'Slack app'
             bash .github/scripts/web_check_and_report.sh 'https://mghp.osn.xsede.org/bir190004-bucket01/archive.bioconductor.org/packages/3.17/index.html' '(Auto-detected) Bioconductor Archive Down' 'disrupted' 'Archive'
             git commit -m "Update website checks $(date '+%Y-%m-%d-%H-%M-%S')"
             git push
