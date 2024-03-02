@@ -4,7 +4,7 @@ date: 2024-03-02 10:08:22
 resolved: false
 # resolvedWhen: 
 # Possible severity levels: down, disrupted, notice
-severity: down
+severity: disrupted
 affected:
   - Workshop Service
 section: issue
