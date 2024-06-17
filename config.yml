@@ -175,6 +175,10 @@ params:
       description: https://slack.bioconductor.org
       category: Websites
       link: https://slack.bioconductor.org
+    - name: Bioconductor Code Browser
+      description: https://code.bioconductor.org
+      category: Websites
+      link: https://code.bioconductor.org
     - name: Archive
       description: Access to older releases
       category: Websites
