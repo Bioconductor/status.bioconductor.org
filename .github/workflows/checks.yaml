@@ -61,7 +61,7 @@ jobs:
         with:
           channel-id: '${{secrets.SLACK_CHANNEL_ID}}'
           slack-message: |
-            At least one webcheck has failed.
+            At least one webcheck has changed.
             ${{env.NOTIFYMSG}}
         env:
           SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
