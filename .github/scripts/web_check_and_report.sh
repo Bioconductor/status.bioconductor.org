@@ -14,7 +14,8 @@ if cat /tmp/curlcheck-$DATE | grep "^HTTP" | grep "200" > /dev/null; then
   touch /tmp/existingissue-$DATE
   if grep -lR 'resolved: false' content/issues/*_"$SYSTEM".md > /tmp/existingissue-$DATE; then
     echo "Previously unreachable: $WEBURL" >> /tmp/webchecknotify-msg
-    echo "Issue URL: https://github.com/Bioconductor/status.bioconductor.org/blob/main/$(cat /tmp/existingissue-$DATE)" >> /tmp/webchecknotify-msg
+    echo "Issue URL: $(cat /tmp/existingissue-$DATE | sed 's#content/#https://dev.status.bioconductor.org/#' | sed 's/.md//' |  tr '[:upper:]' '[:lower:]')" >> /tmp/webchecknotify-msg
+    echo "Issue source: https://github.com/Bioconductor/status.bioconductor.org/blob/main/$(cat /tmp/existingissue-$DATE)" >> /tmp/webchecknotify-msg
     CURRSEVERITY=$(cat /tmp/existingissue-$DATE | xargs -i grep 'severity:' '{}' | awk '{print $2}' | tr -d "'")
     if [ "$CURRSEVERITY" == "down" ]; then
         NEWSEVERITY="disrupted"
