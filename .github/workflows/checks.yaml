@@ -32,11 +32,12 @@ jobs:
             git config user.name github-actions
             git config user.email github-actions@github.com
             git pull origin main || git reset --hard origin/main
-            bash .github/scripts/web_check_and_report.sh 'http://bioconductor.org' '(Auto-detected) Bioconductor Main Site Down' 'disrupted' 'Main site'
-            bash .github/scripts/web_check_and_report.sh 'http://workshop.bioconductor.org' '(Auto-detected) Bioconductor Workshop Service Down' 'disrupted' 'Workshop Service'
-            bash .github/scripts/web_check_and_report.sh 'http://slack.bioconductor.org' '(Auto-detected) Slack Invite App Down' 'disrupted' 'Slack app'
-            bash .github/scripts/web_check_and_report.sh 'https://mghp.osn.xsede.org/bir190004-bucket01/archive.bioconductor.org/packages/3.17/index.html' '(Auto-detected) Bioconductor Archive Down' 'disrupted' 'Archive'
-            bash .github/scripts/web_check_and_report.sh 'https://code.bioconductor.org' '(Auto-detected) Bioconductor Code Browser Down' 'disrupted' 'Bioconductor Code Browser'
+            bash .github/scripts/web_check_and_report.sh 'webcheck' 'http://bioconductor.org' '(Auto-detected) Bioconductor Main Site Down' 'disrupted' 'Main site'
+            bash .github/scripts/web_check_and_report.sh 'webcheck' 'http://workshop.bioconductor.org' '(Auto-detected) Bioconductor Workshop Service Down' 'disrupted' 'Workshop Service'
+            bash .github/scripts/web_check_and_report.sh 'webcheck' 'http://slack.bioconductor.org' '(Auto-detected) Slack Invite App Down' 'disrupted' 'Slack app'
+            bash .github/scripts/web_check_and_report.sh 'webcheck' 'https://mghp.osn.xsede.org/bir190004-bucket01/archive.bioconductor.org/packages/3.17/index.html' '(Auto-detected) Bioconductor Archive Down' 'disrupted' 'Archive'
+            bash .github/scripts/web_check_and_report.sh 'webcheck' 'https://code.bioconductor.org' '(Auto-detected) Bioconductor Code Browser Down' 'disrupted' 'Bioconductor Code Browser'
+            bash .github/scripts/web_check_and_report.sh 'statscheck' 'https://bioconductor.org/packages/stats/bioc/' '(Auto-detected) Bioconductor Package Stats Failed Check' 'disrupted' 'Package Stats'
             
             git commit -m "Update website checks $(date '+%Y-%m-%d-%H-%M-%S')"
             git push
