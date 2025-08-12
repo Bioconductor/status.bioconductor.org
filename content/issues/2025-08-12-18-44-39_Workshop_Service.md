@@ -1,8 +1,8 @@
 ---
 title: (Auto-detected) Bioconductor Workshop Service Down
 date: 2025-08-12 22:44:39
-resolved: false
-# resolvedWhen: 
+resolved: true
+resolvedWhen: 2025-08-12 22:53:55
 # Possible severity levels: down, disrupted, notice
 severity: disrupted
 affected:
