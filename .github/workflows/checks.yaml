@@ -38,7 +38,8 @@ jobs:
             bash .github/scripts/web_check_and_report.sh 'webcheck' 'https://mghp.osn.xsede.org/bir190004-bucket01/archive.bioconductor.org/packages/3.17/index.html' '(Auto-detected) Bioconductor Archive Down' 'disrupted' 'Archive'
             bash .github/scripts/web_check_and_report.sh 'webcheck' 'https://mghp.osn.xsede.org/bir190004-bucket01/ExperimentHub/BioImageDbs/v02/EM_id0005_Mouse_Kidney_2D_All_Mito_1024_4dTensor_dataset.gif' '(Auto-detected) Bioconductor ExperimentHub Resource Endpoint Down' 'disrupted' 'Archive'
             bash .github/scripts/web_check_and_report.sh 'webcheck' 'https://mghp.osn.xsede.org/bir190004-bucket01/AnnotationHub/goldenpath' '(Auto-detected) Bioconductor AnnotationHub Resource Endpoint Down' 'disrupted' 'Archive'
-            bash .github/scripts/web_check_and_report.sh 'webcheck' 'https://code.bioconductor.org' '(Auto-detected) Bioconductor Code Browser Down' 'disrupted' 'Bioconductor Code Browser'
+            bash .github/scripts/web_check_and_report.sh 'webcheck' 'https://code.bioconductor.org/browse/' '(Auto-detected) Bioconductor Code Browser Down' 'disrupted' 'Bioconductor Code Browser'
+            bash .github/scripts/web_check_and_report.sh 'webcheck' 'https://code.bioconductor.org/search/' '(Auto-detected) Bioconductor Code Search Down' 'disrupted' 'Bioconductor Code Search'
             bash .github/scripts/web_check_and_report.sh 'statscheck' 'https://bioconductor.org/packages/stats/bioc/' '(Auto-detected) Bioconductor Package Stats Failed Check' 'disrupted' 'Package Stats'
             
             git commit -m "Update website checks $(date '+%Y-%m-%d-%H-%M-%S')"
