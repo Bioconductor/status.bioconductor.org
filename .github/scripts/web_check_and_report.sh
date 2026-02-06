@@ -111,6 +111,10 @@ else
 fi
 rm /tmp/curlcheck-$DATE
 rm /tmp/existingissue-$DATE
-if $NOTIFY; then echo 'yes' > /tmp/webchecknotify-$SYSTEM; fi
-cat /tmp/webchecknotify-msg-$SYSTEM >> /tmp/webchecknotify-msg 2>/dev/null || true
+if $NOTIFY; then 
+  echo 'yes' > /tmp/webchecknotify-$SYSTEM
+  if [ -f /tmp/webchecknotify-msg-$SYSTEM ]; then
+    cat /tmp/webchecknotify-msg-$SYSTEM >> /tmp/webchecknotify-msg
+  fi
+fi
 git add logs/${SYSTEM}.csv
