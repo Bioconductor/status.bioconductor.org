@@ -44,9 +44,9 @@ jobs:
             
             git commit -m "Update website checks $(date '+%Y-%m-%d-%H-%M-%S')"
             git push
-            if grep 'yes' /tmp/webchecknotify > /dev/null; then
+            if ls /tmp/webchecknotify-* > /dev/null 2>&1; then
               echo notify='yes' >> $GITHUB_OUTPUT
-              rm /tmp/webchecknotify
+              rm /tmp/webchecknotify-*
             fi
 
       - name: Set msg value
