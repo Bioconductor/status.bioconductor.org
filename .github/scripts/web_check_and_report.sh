@@ -37,7 +37,7 @@ fi
 
 if grep -q 'pass' /tmp/check; then
   touch /tmp/existingissue-$DATE
-  if grep -lR 'resolved: false' content/issues/*_"$SYSTEM".md > /tmp/existingissue-$DATE; then
+  if ls content/issues/*_"$SYSTEM".md 2>/dev/null | xargs grep -l 'resolved: false' > /tmp/existingissue-$DATE 2>/dev/null && [ -s /tmp/existingissue-$DATE ]; then
     echo "URL to affected resource: $WEBURL" >> /tmp/webchecknotify-msg-$SYSTEM
     echo "Issue URL: $(cat /tmp/existingissue-$DATE | sed 's#content/#https://dev.status.bioconductor.org/#' | sed 's/.md//' |  tr '[:upper:]' '[:lower:]')" >> /tmp/webchecknotify-msg-$SYSTEM
     echo "Issue source: https://github.com/Bioconductor/status.bioconductor.org/blob/main/$(cat /tmp/existingissue-$DATE)" >> /tmp/webchecknotify-msg-$SYSTEM
@@ -70,17 +70,9 @@ if grep -q 'pass' /tmp/check; then
   cat /tmp/temp-$SYSTEM >> "$LOGFILE"
   rm /tmp/reversed-$SYSTEM /tmp/temp-$SYSTEM
 else
-  if ! grep -lR 'resolved: false' content/issues/*_"$SYSTEM".md > /tmp/existingissue-$DATE; then
-    sed """s@##TITLE##@${TITLE}@g
-           s@YYYY-MM-DD hh:mm:ss@$(date '+%Y-%m-%d %H:%M:%S')@g
-           s@##SEVERITY##@${SEVERITY}@g
-           s@##DESCRIPTION##@$(echo "$DATE $TITLE")@g
-           s@##SYSTEM##@${SYSTEMNAME}@g""" .github/templates/incident.md > "content/issues/${DATE}_$SYSTEM.md"
-    git add "content/issues"
-    echo "URL to affected resource: $WEBURL" >> /tmp/webchecknotify-msg-$SYSTEM
-    echo "Issue URL: https://github.com/Bioconductor/status.bioconductor.org/blob/main/content/issues/${DATE}_$SYSTEM.md" >> /tmp/webchecknotify-msg-$SYSTEM
-    echo "Severity marked as '$SEVERITY'." >> /tmp/webchecknotify-msg-$SYSTEM
-  else
+  # Check for existing unresolved issue
+  if ls content/issues/*_"$SYSTEM".md 2>/dev/null | xargs grep -l 'resolved: false' > /tmp/existingissue-$DATE 2>/dev/null && [ -s /tmp/existingissue-$DATE ]; then
+    # Existing unresolved issue found - update it
     echo "URL to affected resource: $WEBURL" >> /tmp/webchecknotify-msg-$SYSTEM
     echo "Issue URL: https://github.com/Bioconductor/status.bioconductor.org/blob/main/$(cat /tmp/existingissue-$DATE)" >> /tmp/webchecknotify-msg-$SYSTEM
     CURRSEVERITY=$(cat /tmp/existingissue-$DATE | xargs -i grep 'severity:' '{}' | awk '{print $2}' | tr -d "'")
@@ -93,6 +85,17 @@ else
     cat /tmp/existingissue-$DATE | xargs -i sed -i "s/severity: $CURRSEVERITY/severity: $NEWSEVERITY/" '{}'
     echo "Severity upgraded from '$CURRSEVERITY' to '$NEWSEVERITY' on $DATE" >> /tmp/webchecknotify-msg-$SYSTEM
     git add "content/issues"
+  else
+    # No existing unresolved issue - create new one
+    sed """s@##TITLE##@${TITLE}@g
+           s@YYYY-MM-DD hh:mm:ss@$(date '+%Y-%m-%d %H:%M:%S')@g
+           s@##SEVERITY##@${SEVERITY}@g
+           s@##DESCRIPTION##@$(echo "$DATE $TITLE")@g
+           s@##SYSTEM##@${SYSTEMNAME}@g""" .github/templates/incident.md > "content/issues/${DATE}_$SYSTEM.md"
+    git add "content/issues"
+    echo "URL to affected resource: $WEBURL" >> /tmp/webchecknotify-msg-$SYSTEM
+    echo "Issue URL: https://github.com/Bioconductor/status.bioconductor.org/blob/main/content/issues/${DATE}_$SYSTEM.md" >> /tmp/webchecknotify-msg-$SYSTEM
+    echo "Severity marked as '$SEVERITY'." >> /tmp/webchecknotify-msg-$SYSTEM
   fi
   # Separate log file per service with latest at top
   LOGFILE="logs/${SYSTEM}.csv"
