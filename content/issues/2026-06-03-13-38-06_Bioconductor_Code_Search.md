@@ -4,7 +4,7 @@ date: 2026-06-03 17:40:21
 resolved: false
 # resolvedWhen: 
 # Possible severity levels: down, disrupted, notice
-severity: down
+severity: disrupted
 affected:
   - Bioconductor Code Search
 section: issue
