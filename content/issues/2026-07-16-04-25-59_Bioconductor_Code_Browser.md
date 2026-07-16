@@ -1,8 +1,8 @@
 ---
 title: (Auto-detected) Bioconductor Code Browser Down
 date: 2026-07-16 08:26:00
-resolved: false
-# resolvedWhen: 
+resolved: true
+resolvedWhen: 2026-07-16 09:18:46
 # Possible severity levels: down, disrupted, notice
 severity: disrupted
 affected:
