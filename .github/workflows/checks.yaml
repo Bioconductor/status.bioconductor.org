@@ -41,7 +41,7 @@ jobs:
             bash .github/scripts/web_check_and_report.sh 'webcheck' 'https://code.bioconductor.org/browse/' '(Auto-detected) Bioconductor Code Browser Down' 'disrupted' 'Bioconductor Code Browser'
             bash .github/scripts/web_check_and_report.sh 'webcheck' 'https://code.bioconductor.org/search/' '(Auto-detected) Bioconductor Code Search Down' 'disrupted' 'Bioconductor Code Search'
             bash .github/scripts/web_check_and_report.sh 'webcheck' 'https://bioconductor.org/packages/devel/bioc/src/contrib/PACKAGES' '(Auto-detected) Bioconductor devel PACKAGES Index Down' 'disrupted' 'devel PACKAGES'
-            bash .github/scripts/web_check_and_report.sh 'webcheck' 'https://bioconductor.org/packages/release/bioc/src/contrib/PACKAGES' '(Auto-detected) Bioconductor RELEASE_* PACKAGES Index Down' 'disrupted' 'RELEASE_3_23 PACKAGES'
+            bash .github/scripts/web_check_and_report.sh 'webcheck' 'https://bioconductor.org/packages/release/bioc/src/contrib/PACKAGES' '(Auto-detected) Bioconductor RELEASE_* PACKAGES Index Down' 'disrupted' 'RELEASE_* PACKAGES'
             bash .github/scripts/web_check_and_report.sh 'statscheck' 'https://bioconductor.org/packages/stats/bioc/' '(Auto-detected) Bioconductor Package Stats Failed Check' 'disrupted' 'Package Stats'
             
             git commit -m "Update website checks $(date '+%Y-%m-%d-%H-%M-%S')"
