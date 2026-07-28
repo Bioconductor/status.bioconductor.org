@@ -200,13 +200,13 @@ params:
       category: Websites
       link: https://github.com/Bioconductor/status.bioconductor.org
     - name: devel PACKAGES
-      description: https://bioconductor.org/packages/3.24/bioc/src/contrib/PACKAGES
+      description: https://bioconductor.org/packages/devel/bioc/src/contrib/PACKAGES
       category: BiocManager
-      link: https://bioconductor.org/packages/3.24/bioc/src/contrib/PACKAGES
-    - name: RELEASE_3_23 PACKAGES
-      description: https://bioconductor.org/packages/3.23/bioc/src/contrib/PACKAGES
+      link: https://bioconductor.org/packages/devel/bioc/src/contrib/PACKAGES
+    - name: RELEASE_* PACKAGES
+      description: https://bioconductor.org/packages/release/bioc/src/contrib/PACKAGES
       category: BiocManager
-      link: https://bioconductor.org/packages/3.23/bioc/src/contrib/PACKAGES
+      link: https://bioconductor.org/packages/release/bioc/src/contrib/PACKAGES
     - name: GitHub
       description: Status of GitHub services
       category: External
