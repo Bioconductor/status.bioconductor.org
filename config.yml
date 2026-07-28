@@ -203,18 +203,10 @@ params:
       description: https://bioconductor.org/packages/3.24/bioc/src/contrib/PACKAGES
       category: BiocManager
       link: https://bioconductor.org/packages/3.24/bioc/src/contrib/PACKAGES
-    - name: devel PACKAGES.gz
-      description: https://bioconductor.org/packages/3.24/bioc/src/contrib/PACKAGES.gz
-      category: BiocManager
-      link: https://bioconductor.org/packages/3.24/bioc/src/contrib/PACKAGES.gz
     - name: RELEASE_3_23 PACKAGES
       description: https://bioconductor.org/packages/3.23/bioc/src/contrib/PACKAGES
       category: BiocManager
       link: https://bioconductor.org/packages/3.23/bioc/src/contrib/PACKAGES
-    - name: RELEASE_3_23 PACKAGES.gz
-      description: https://bioconductor.org/packages/3.23/bioc/src/contrib/PACKAGES.gz
-      category: BiocManager
-      link: https://bioconductor.org/packages/3.23/bioc/src/contrib/PACKAGES.gz
     - name: GitHub
       description: Status of GitHub services
       category: External
