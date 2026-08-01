@@ -28,6 +28,10 @@ jobs:
           shell: bash
           command: |
             set -x
+
+            # Clear notification state left by a previous retry attempt
+            rm -f /tmp/webcheckflag-* /tmp/webchecknotify-msg /tmp/webchecknotify-msg-*
+
             git config --global --add safe.directory "$GITHUB_WORKSPACE"
             git config user.name github-actions
             git config user.email github-actions@github.com
