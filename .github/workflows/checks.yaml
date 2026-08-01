@@ -39,6 +39,8 @@ jobs:
             git config user.name github-actions
             git config user.email github-actions@github.com
             git pull origin main || git reset --hard origin/main
+
+            # <system> (last argument) must exactly match a `name` under `systems:` in config.yml (see docs/checks.md)
             bash .github/scripts/web_check_and_report.sh 'webcheck' 'http://bioconductor.org' '(Auto-detected) Bioconductor Main Site Down' 'disrupted' 'Main site'
             bash .github/scripts/web_check_and_report.sh 'webcheck' 'http://workshop.bioconductor.org' '(Auto-detected) Bioconductor Workshop Service Down' 'disrupted' 'Workshop Service'
             bash .github/scripts/web_check_and_report.sh 'webcheck' 'http://slack.bioconductor.org' '(Auto-detected) Slack Invite App Down' 'disrupted' 'Slack app'

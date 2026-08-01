@@ -1,6 +1,7 @@
 #!/bin/bash
 # USAGE:
 # bash .github/scripts/web_check_and_report.sh 'webcheck' 'http://bioconductor.org' '(Auto-detected) Bioconductor Main Site Down' 'disrupted' 'Main site'
+# <system name> must exactly match a `name` under `systems:` in config.yml; a mismatch is silent (see docs/checks.md)
 # Leaves /tmp/webcheckflag-<SYSTEM> and /tmp/webchecknotify-msg for the workflow; the prefixes must stay distinct so deleting flags spares the message
 CHECKTYPE="$1"
 WEBURL="$2"

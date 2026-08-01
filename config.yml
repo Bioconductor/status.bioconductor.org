@@ -162,6 +162,10 @@ params:
   #
   # For help, see the wiki:
   # https://github.com/cstate/cstate/wiki/Customization
+  #
+  # Each `name` must exactly match the system name passed to
+  # web_check_and_report.sh in .github/workflows/checks.yaml. A mismatch
+  # is silent: the component stays operational. See docs/checks.md.
   systems:
     - name: Main site
       description: https://bioconductor.org

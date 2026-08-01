@@ -1,0 +1,24 @@
+name: Verify configuration
+
+# Fails when a check reports against a system name config.yml does not
+# declare; that mismatch is otherwise silent (see docs/checks.md).
+# `pull_request`, not `pull_request_target`: this runs branch content and
+# must never have secrets in scope.
+on:
+  pull_request:
+    paths:
+      - 'config.yml'
+      - '.github/workflows/checks.yaml'
+      - '.github/scripts/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  system-names:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Check that every check maps to a declared component
+        run: bash .github/scripts/verify_system_names.sh
