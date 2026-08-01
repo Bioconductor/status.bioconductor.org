@@ -1,6 +1,7 @@
 #!/bin/bash
 # USAGE:
 # bash .github/scripts/web_check_and_report.sh 'http://bioconductor.org' '(Auto-detected) Bioconductor Main Site Down' 'down' 'Main site'
+# Leaves /tmp/webcheckflag-<SYSTEM> and /tmp/webchecknotify-msg for the workflow; the prefixes must stay distinct so deleting flags spares the message
 CHECKTYPE="$1"
 WEBURL="$2"
 TITLE="$3"
@@ -130,7 +131,7 @@ fi
 rm /tmp/curlcheck-$DATE
 rm /tmp/existingissue-$DATE
 if $NOTIFY; then 
-  echo 'yes' > /tmp/webchecknotify-$SYSTEM
+  echo 'yes' > /tmp/webcheckflag-$SYSTEM
   if [ -f /tmp/webchecknotify-msg-$SYSTEM ]; then
     cat /tmp/webchecknotify-msg-$SYSTEM >> /tmp/webchecknotify-msg
   fi

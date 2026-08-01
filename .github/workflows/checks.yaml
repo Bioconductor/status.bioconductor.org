@@ -44,9 +44,11 @@ jobs:
             
             git commit -m "Update website checks $(date '+%Y-%m-%d-%H-%M-%S')"
             git push
-            if ls /tmp/webchecknotify-* > /dev/null 2>&1; then
+
+            # Delete only the flags; webchecknotify-msg must survive for the Slack step
+            if ls /tmp/webcheckflag-* > /dev/null 2>&1; then
               echo notify='yes' >> $GITHUB_OUTPUT
-              rm /tmp/webchecknotify-*
+              rm -f /tmp/webcheckflag-*
             fi
 
       - name: Set msg value
