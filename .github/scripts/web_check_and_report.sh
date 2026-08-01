@@ -12,6 +12,20 @@ set -x
 NOTIFY=true
 DATE=$(TZ='America/New_York' date '+%Y-%m-%d-%H-%M-%S')
 
+# List open 'down'/'disrupted' incidents for $SYSTEM, one path per line; returns 1 when none
+# 'notice' issues are hand-written announcements and are never escalated, resolved or re-notified
+find_open_incidents() {
+  local f found=1
+  for f in content/issues/*_"$SYSTEM".md; do
+    [ -e "$f" ] || continue
+    grep -q 'resolved: false' "$f" || continue
+    grep -Eq '^severity:[[:space:]]*(down|disrupted)[[:space:]]*$' "$f" || continue
+    echo "$f"
+    found=0
+  done
+  return $found
+}
+
 if [ "$CHECKTYPE" == "webcheck" ]; then
   curl -s --head -L --request GET "$WEBURL" > /tmp/curlcheck-$DATE
   if cat /tmp/curlcheck-$DATE | grep "^HTTP" | grep "200" > /dev/null; then 
@@ -37,7 +51,7 @@ fi
 
 if grep -q 'pass' /tmp/check; then
   touch /tmp/existingissue-$DATE
-  if ls content/issues/*_"$SYSTEM".md 2>/dev/null | xargs grep -l 'resolved: false' > /tmp/existingissue-$DATE 2>/dev/null && [ -s /tmp/existingissue-$DATE ]; then
+  if find_open_incidents > /tmp/existingissue-$DATE && [ -s /tmp/existingissue-$DATE ]; then
     echo "URL to affected resource: $WEBURL" >> /tmp/webchecknotify-msg-$SYSTEM
     echo "Issue URL: $(cat /tmp/existingissue-$DATE | sed 's#content/#https://dev.status.bioconductor.org/#' | sed 's/.md//' |  tr '[:upper:]' '[:lower:]')" >> /tmp/webchecknotify-msg-$SYSTEM
     echo "Issue source: https://github.com/Bioconductor/status.bioconductor.org/blob/main/$(cat /tmp/existingissue-$DATE)" >> /tmp/webchecknotify-msg-$SYSTEM
@@ -70,15 +84,16 @@ if grep -q 'pass' /tmp/check; then
   cat /tmp/temp-$SYSTEM >> "$LOGFILE"
   rm /tmp/reversed-$SYSTEM /tmp/temp-$SYSTEM
 else
-  # Check for existing unresolved issue
-  if ls content/issues/*_"$SYSTEM".md 2>/dev/null | xargs grep -l 'resolved: false' > /tmp/existingissue-$DATE 2>/dev/null && [ -s /tmp/existingissue-$DATE ]; then
+  # Check for an existing unresolved issue this state machine owns
+  if find_open_incidents > /tmp/existingissue-$DATE && [ -s /tmp/existingissue-$DATE ]; then
     # Existing unresolved issue found - update it
     echo "URL to affected resource: $WEBURL" >> /tmp/webchecknotify-msg-$SYSTEM
     echo "Issue URL: https://github.com/Bioconductor/status.bioconductor.org/blob/main/$(cat /tmp/existingissue-$DATE)" >> /tmp/webchecknotify-msg-$SYSTEM
     CURRSEVERITY=$(cat /tmp/existingissue-$DATE | xargs -i grep 'severity:' '{}' | awk '{print $2}' | tr -d "'")
     if [ "$CURRSEVERITY" == "disrupted" ]; then
         NEWSEVERITY="down"
-    elif [ "$CURRSEVERITY" == "down" ]; then
+    else
+        # Already 'down' - keep severity unchanged and stop re-notifying an ongoing outage
         NEWSEVERITY="down"
         NOTIFY=false
     fi
