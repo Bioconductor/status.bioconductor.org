@@ -12,6 +12,9 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # Step `if:` conditions cannot read secrets
+    env:
+      SLACK_ENABLED: ${{ secrets.SLACK_BOT_TOKEN != '' && secrets.SLACK_CHANNEL_ID != '' }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -55,27 +58,25 @@ jobs:
               rm -f /tmp/webcheckflag-*
             fi
 
-      - name: Set msg value
-        if: steps.check.outputs.notify=='yes'
-        id: msg
-        run: |
-          {
-            echo 'NOTIFYMSG<<EOF'
-            cat /tmp/webchecknotify-msg
-            echo EOF
-          } >> "$GITHUB_ENV"
-          rm /tmp/webchecknotify-msg
-
-      - name: Notify slack channel
-        uses: slackapi/slack-github-action@v1.24.0
-        with:
-          channel-id: '${{secrets.SLACK_CHANNEL_ID}}'
-          slack-message: |
-            At least one webcheck has changed.
-            ${{env.NOTIFYMSG}}
+      - name: Build Slack payload
+        if: steps.check.outputs.notify == 'yes' && env.SLACK_ENABLED == 'true'
         env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
           SLACK_CHANNEL_ID: ${{ secrets.SLACK_CHANNEL_ID }}
-          NOTIFYMSG: ${{env.NOTIFYMSG}}
-        if: env.SLACK_BOT_TOKEN != null && env.SLACK_CHANNEL_ID != null && steps.check.outputs.notify=='yes'
+        run: |
+          MSG=$(cat /tmp/webchecknotify-msg 2>/dev/null || true)
+          [ -n "$MSG" ] || MSG="(no detail captured - check the run log)"
+          jq -n \
+            --arg channel "$SLACK_CHANNEL_ID" \
+            --arg text "At least one webcheck has changed."$'\n'"$MSG" \
+            '{channel: $channel, text: $text}' > "$RUNNER_TEMP/slack-payload.json"
+          rm -f /tmp/webchecknotify-msg /tmp/webchecknotify-msg-*
+
+      # Payload file rather than inline YAML because the message is multi-line
+      - name: Notify slack channel
+        if: steps.check.outputs.notify == 'yes' && env.SLACK_ENABLED == 'true'
+        uses: slackapi/slack-github-action@dcb1066f776dd043e64d0e8ba94ca15cc7e1875d # v4.0.0
+        with:
+          method: chat.postMessage
+          token: ${{ secrets.SLACK_BOT_TOKEN }}
+          payload-file-path: ${{ runner.temp }}/slack-payload.json
         continue-on-error: true
