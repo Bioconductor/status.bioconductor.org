@@ -5,8 +5,10 @@ on:
   push:
     branches:
       - main
+    # The site reads incidents under content/, not these logs; skip rebuilding
+    # for log-only check commits. Commits also touching content/ still build.
     paths-ignore:
-      - 'logs/checks.csv'
+      - 'logs/**'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
