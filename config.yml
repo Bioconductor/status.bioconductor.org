@@ -171,7 +171,8 @@ params:
       description: https://workshop.bioconductor.org
       category: Websites
       link: https://workshop.bioconductor.org
-    - name: Slack invite app
+    # Name used by the check and by existing incidents
+    - name: Slack app
       description: https://slack.bioconductor.org
       category: Websites
       link: https://slack.bioconductor.org
