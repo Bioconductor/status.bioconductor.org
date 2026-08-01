@@ -17,14 +17,14 @@ jobs:
       SLACK_ENABLED: ${{ secrets.SLACK_BOT_TOKEN != '' && secrets.SLACK_CHANNEL_ID != '' }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           token: ${{ secrets.PAT }}
           persist-credentials: true
 
       - name: Check site accessibility and push results
         id: check
-        uses: nick-fields/retry@v2
+        uses: nick-fields/retry@ad984534de44a9489a53aefd81eb77f87c70dc60 # v4.0.0
         with:
           timeout_minutes: 10
           max_attempts: 20
