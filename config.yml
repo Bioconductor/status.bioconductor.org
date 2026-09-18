@@ -199,6 +199,14 @@ params:
       description: Package Download Statistics
       category: Websites
       link: https://github.com/Bioconductor/status.bioconductor.org
+    - name: devel PACKAGES
+      description: https://bioconductor.org/packages/devel/bioc/src/contrib/PACKAGES
+      category: BiocManager
+      link: https://bioconductor.org/packages/devel/bioc/src/contrib/PACKAGES
+    - name: RELEASE_* PACKAGES
+      description: https://bioconductor.org/packages/release/bioc/src/contrib/PACKAGES
+      category: BiocManager
+      link: https://bioconductor.org/packages/release/bioc/src/contrib/PACKAGES
     - name: GitHub
       description: Status of GitHub services
       category: External
