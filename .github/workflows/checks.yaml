@@ -9,6 +9,9 @@ defaults:
 concurrency:
   group: "webchecks"
   cancel-in-progress: false
+# Checkout and push use PAT, not GITHUB_TOKEN
+permissions:
+  contents: read
 jobs:
   build:
     runs-on: ubuntu-latest
