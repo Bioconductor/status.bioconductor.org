@@ -1,33 +1,90 @@
-# cState Site v5.5
+# status.bioconductor.org
 
-This is the default cState status page website directory/folder.
+The Bioconductor status page: **<https://dev.status.bioconductor.org>**
 
-* Example site repository link (you are here): https://github.com/cstate/example
-* Main cState source code repository: https://github.com/cstate/cstate
+Scheduled checks in GitHub Actions probe Bioconductor's public services. When
+a check fails, it writes an incident into this repository and the page, a
+[Hugo](https://gohugo.io) site using the [cState](https://github.com/cstate/cstate)
+theme, is rebuilt to show it. When the service recovers, the check resolves the
+incident. Maintainers get a Slack message whenever an incident changes.
 
-## Are you updating? Use these commands
+The page has no server or database: the checks run in GitHub Actions, the
+incidents and check history are files in this repository, and GitHub Pages
+serves the site.
 
-Download your site with all the directories. `git clone --recursive <your repo link goes here>`
+## How it works
 
-Update the cState theme submodule. `git submodule foreach git pull origin master`
+```
+GitHub Actions schedule
+  ├─ probe each monitored URL
+  ├─ open, escalate, de-escalate or resolve content/issues/<timestamp>_<System>.md
+  ├─ add a row to logs/<System>.csv
+  ├─ commit and push to main
+  └─ post to Slack if an incident changed
 
-In the parent directory, type `hugo serve`. Check to see if everything is working.
+push to main that changes anything outside logs/
+  └─ Hugo build → GitHub Pages → dev.status.bioconductor.org
+```
 
-Then do `git add -A; git commit -m "Update cState"; git push origin <branch, probably main or master>`. Your status page is now updated and uploaded.
+## Repository layout
 
+| Path | Contents |
+|---|---|
+| `.github/workflows/checks.yaml` | Check schedule and the list of monitored URLs |
+| `.github/workflows/hugo.yaml` | Site build and deployment to GitHub Pages |
+| `.github/workflows/verify.yaml` | Pull request check of system names |
+| `.github/scripts/web_check_and_report.sh` | One check: probe, incident update, log row, notification flag |
+| `.github/scripts/verify_system_names.sh` | Reports checks whose system name `config.yml` does not declare |
+| `.github/templates/incident.md` | Template for incidents the checks create |
+| `config.yml` | cState configuration, including the components under `systems:` |
+| `content/issues/` | Every incident, one file each |
+| `logs/` | Check history, one CSV file per system; not read by the site |
+| `legacy-logs/` | Combined check history up to January 2026 |
+| `themes/cstate` | The cState theme, as a git submodule |
+| `layouts/`, `static/` | Template overrides (none) and static files such as the logo |
+| `vercel.json` | CORS headers for a Vercel deployment |
 
-## For maintainers (probably not for you)
+## Documentation
 
-Maintainers need to update both cstate/cstate and cstate/example for each new version.
+Maintainer documentation is in [docs/](docs/README.md):
 
-Download this repo with all the directories. `git clone --recursive -b master https://github.com/cstate/example.git`
+- [Architecture](docs/architecture.md)
+- [Adding, changing and removing checks](docs/checks.md)
+- [Deployment](docs/deployment.md)
+- [Operations](docs/operations.md)
+- [Updating](docs/updating.md)
+- [Troubleshooting](docs/troubleshooting.md)
+- [Security](docs/security.md)
+- [Examples](docs/examples/README.md)
 
-Add your changes from cstate/cstate's exampleSite folder.
+A check and its component are joined by the system name, which must match
+exactly in `checks.yaml` and `config.yml`; a mismatch shows no error on the
+page. The **Verify configuration** workflow reports it in pull requests. Read
+[docs/checks.md](docs/checks.md) before changing either file.
 
-Update the cState theme submodule. `git submodule foreach git pull origin master`
+## Building locally
 
-Then push `git add -A; git commit -m "Update cState vX.X.X"; git push origin master`.
+```bash
+git clone --recursive https://github.com/Bioconductor/status.bioconductor.org
+cd status.bioconductor.org
+hugo serve
+```
+
+In a clone made without `--recursive`, fetch the theme first:
+
+```bash
+git submodule update --init --recursive
+```
+
+Every check run adds a commit, so a full clone is large; see
+[repository growth](docs/operations.md#repository-growth).
+
+## Upstream
+
+Built on [cState](https://github.com/cstate/cstate) and based on
+[cstate/example](https://github.com/cstate/example); the files under
+`.github/` are Bioconductor's.
 
 ## License
 
-MIT © Mantas Vilčinskas
+cState and the files from cstate/example: MIT © Mantas Vilčinskas.
