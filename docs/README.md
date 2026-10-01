@@ -26,6 +26,7 @@ it, changing what it monitors and deploying it elsewhere.
 | [checks.md](checks.md) | Adding, changing, renaming and removing checks; hand-written incidents |
 | [deployment.md](deployment.md) | Deploying from scratch: secrets, Pages, custom domain, first run |
 | [operations.md](operations.md) | Health checks, routine tasks, backups, repository growth |
+| [updating.md](updating.md) | Update procedures and cadence: Bioconductor releases, Hugo, theme, Actions, runner image |
 | [troubleshooting.md](troubleshooting.md) | Symptom, cause and fix |
 | [security.md](security.md) | Trust boundaries, secrets, hardening, reporting a vulnerability |
 | [examples/](examples/) | Monitoring a new service; announcing maintenance |
