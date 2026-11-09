@@ -208,6 +208,10 @@ params:
       description: Status of GitHub services
       category: External
       link: https://www.githubstatus.com/
+    - name: JetStream2
+      description: Hubs Ingest cluster
+      category: External
+      link: https://jetstream.status.io/
 
   # What date format to use?
   #
