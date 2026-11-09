@@ -324,6 +324,9 @@ params:
   # for best browser support!
   logo: bioconductor_logo_rgb.png
 
+  # Link to the GitHub repository (displayed as an icon in the header)
+  githubRepo: https://github.com/Bioconductor/status.bioconductor.org
+
   # This is the description that is shown
   # on the footer and meta tags.
   #
