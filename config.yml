@@ -203,7 +203,7 @@ params:
     - name: Package Stats
       description: Package Download Statistics
       category: Websites
-      link: https://github.com/Bioconductor/status.bioconductor.org
+      link: https://www.bioconductor.org/packages/stats/bioc/index.html
     - name: devel PACKAGES
       description: https://bioconductor.org/packages/devel/bioc/src/contrib/PACKAGES
       category: BiocManager
